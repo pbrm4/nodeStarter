@@ -17,9 +17,19 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use('/api', mainRouter);
+app.use('/api', auth, mainRouter);
 
-
+function auth(req, res, next) {
+    req.user = {};
+    req.user.id = Math.ceil(Math.random() * 100)
+    if (req.user.id < 50) {
+        req.user.role = 'Student'
+    }
+    else {
+        req.user.role = 'Teacher'
+    }
+    next();
+}
 
 
 app.listen(app.get('PORT'), function () {
