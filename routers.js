@@ -3,6 +3,7 @@ const router = express.Router();
 const attendanceRouter = require('./attendance/router.v1');
 
 router.use('/attendance', checkAccess, attendanceRouter);
+router.use('/cricket', attendanceRouter)
 
 
 
